@@ -1,19 +1,8 @@
 import React, { Component } from "react";
 import Contact from "./Contact";
-import {Consumer} from '../Context';
+import {Consumer} from '../../Context';
 
 class Contacts extends Component {
-  
-  deleteContact = (id) => {
-      const { contacts } = this.state;
-
-      const newContacts = contacts.filter(contact => 
-        contact.id !==  id);
-
-        this.setState({
-            contacts: newContacts
-        });
-  }
 
   render() {
     return(
@@ -22,19 +11,23 @@ class Contacts extends Component {
                 const {contacts} = value;
                 return(
                 <React.Fragment>
+                    <h1 className="display-4 mb-2">
+                        <span className="text-danger">
+                            Contact 
+                        </span> List
+                    </h1>
                 {contacts.map(contact => (
                     <Contact 
                     key={contact.id} 
                     contact={contact}
-                    deleteClickHandler={this.deleteContact.bind(
-                        this, contact.id)} 
+                    
                 />
                 ))}
                 </React.Fragment>
                 )
             }}
         </Consumer>
-    )
+        )
   }
 }
 
